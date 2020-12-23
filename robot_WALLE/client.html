@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <title>Chat</title>
+</head>
+
+<body style="margin:0">
+    <script type="text/javascript">
+        var ws = new WebSocket("ws://84bcd0187e71.ngrok.io");
+        var messages = document.getElementById('messages');
+        
+        
+        sleep(2000)
+        
+        ws.onmessage = function(e){ console.log(e.data); };
+        ws.onopen = () => ws.send(JSON.stringify({
+            type: "message",
+            user: "walleclient",
+            message: "helllo!"
+        }));
+        
+        function sleep(miliseconds) {
+            var currentTime = new Date().getTime();
+            while (currentTime + miliseconds >= new Date().getTime()) {
+        }
+        }
+    </script>
+    Messages:
+    <ul id="messages"><li>Hello!</li></ul>
+
+
+</body></html>
